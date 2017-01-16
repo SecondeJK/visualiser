@@ -38,12 +38,4 @@ class DefaultController extends Controller
     {
         return $this->render('visualiserBundle:Default:d3js.html.twig');
     }
-
-    /**
-     * @Route("/todo")
-     */
-    public function todoAction()
-    {
-        return $this->render('visualiserBundle:Default:todo.html.twig');
-    }
 }
