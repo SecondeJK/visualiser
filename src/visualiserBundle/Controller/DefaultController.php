@@ -14,4 +14,28 @@ class DefaultController extends Controller
     {
         return $this->render('visualiserBundle:Default:index.html.twig');
     }
+
+    /**
+     * @Route("/google-charts")
+     */
+    public function gchartsAction()
+    {
+        return $this->render('visualiserBundle:Default:gcharts.html.twig');
+    }
+
+    /**
+     * @Route("/highcharts")
+     */
+    public function highChartsAction()
+    {
+        return $this->render('visualiserBundle:Default:gcharts.html.twig');
+    }
+
+    /**
+     * @Route("/d3js")
+     */
+    public function d3jsAction()
+    {
+        return $this->render('visualiserBundle:Default:gcharts.html.twig');
+    }
 }

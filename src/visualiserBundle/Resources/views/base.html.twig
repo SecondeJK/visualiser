@@ -55,5 +55,11 @@
           <!-- Include all compiled plugins (below), or include individual files as needed -->
           <script src="{{ asset('js/bootstrap.min.js') }}"></script>
         {% endblock %}
+
+        {% block footer %}
+        <footer>
+          <p>&copy; James Seconde, {{ "now"|date("Y") }}</p>
+        </footer>
+        {% endblock %}
     </body>
 </html>
