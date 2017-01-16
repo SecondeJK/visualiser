@@ -6,11 +6,12 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta charset="UTF-8" />
 
-      <title>{% block title %}Jim Seconde: Visualiser{% endblock %}</title>
+      <title>{% block title %}Visualiser{% endblock %}</title>
 
       {% block stylesheets %}
       <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
       <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+      <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
       {% endblock %}
 
     </head>
@@ -27,22 +28,22 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Visualiser</a>
+                <a class="navbar-brand" href="/">Visualiser</a>
               </div>
               <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                  <li class="active"><a href="#">Home</a></li>
+                  <li class="active"><a href="/">Home</a></li>
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Visual Libraries<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="#">Google Charts</a></li>
-                      <li><a href="#">d3js</a></li>
-                      <li><a href="#">HighCharts</a></li>
+                      <li><a href="/google-charts">Google Charts</a></li>
+                      <li><a href="/d3js">d3js</a></li>
+                      <li><a href="/highcharts">HighCharts</a></li>
                       <li role="separator" class="divider"></li>
                     </ul>
                   </li>
                   <li><a href="#">Dashboard [Under Construction]</a></li>
-                  <li><a href="#">App: ToDo [Under Construction]</a></li>
+                  <li><a href="/todo">App: ToDo [Under Construction]</a></li>
               </div><!--/.nav-collapse -->
             </div><!--/.container-fluid -->
           </nav>
@@ -57,9 +58,11 @@
         {% endblock %}
 
         {% block footer %}
-        <footer>
-          <p>&copy; James Seconde, {{ "now"|date("Y") }}</p>
-        </footer>
+        <div class="container">
+          <footer>
+            <p>&copy; James Seconde, {{ "now"|date("Y") }}</p>
+          </footer>
+        </div>
         {% endblock %}
     </body>
 </html>

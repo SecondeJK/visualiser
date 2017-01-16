@@ -28,7 +28,7 @@ class DefaultController extends Controller
      */
     public function highChartsAction()
     {
-        return $this->render('visualiserBundle:Default:gcharts.html.twig');
+        return $this->render('visualiserBundle:Default:highcharts.html.twig');
     }
 
     /**
@@ -36,6 +36,14 @@ class DefaultController extends Controller
      */
     public function d3jsAction()
     {
-        return $this->render('visualiserBundle:Default:gcharts.html.twig');
+        return $this->render('visualiserBundle:Default:d3js.html.twig');
+    }
+
+    /**
+     * @Route("/todo")
+     */
+    public function todoAction()
+    {
+        return $this->render('visualiserBundle:Default:todo.html.twig');
     }
 }
