@@ -5,7 +5,7 @@ namespace visualiserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class toDoController extends Controller
+class ToDoController extends Controller
 {
     /**
      * @Route("/todo")
