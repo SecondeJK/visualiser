@@ -4,10 +4,6 @@ namespace visualiserBundle\Model;
 
 class ToDoList
 {
-  // This is the model for the entire list. It fetches it, exports it and does
-  // other kinds of encoding and shit.
-  // @todo Remove scaffolding comments
-
   private $toDoListData;
   private $fileLocator;
   private $dataPath;
@@ -17,7 +13,10 @@ class ToDoList
     $this->fileLocator = $fileLocator;
   }
 
-  public function loadToDoData()
+  public function loadToDoListData()
+  {
     $this->dataPath = $fileLocator->locate('@visualiserBundle/Resources/data/todo.json');
     $this->toDoListData = json_decode(file_get_contents($path));
+  }
+  
 }

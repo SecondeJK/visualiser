@@ -13,7 +13,7 @@ class ToDoController extends Controller
      */
     public function indexAction()
     {
-        //$toDoInstance = $this->get('visualiser.todolist');
+        $toDoListConcrete = $this->get('visualiser.todolist');
         //dump($todoList);
         //$concreteToDo = new Model\ToDoList($this->get('finder'));
         return $this->render('visualiserBundle:Default:todo.html.twig');
