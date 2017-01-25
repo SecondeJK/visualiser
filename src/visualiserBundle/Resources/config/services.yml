@@ -1,5 +1,6 @@
 services:
     visualiser.todolist:
         class: visualiserBundle\Model\ToDoList
+        arguments: ['@visualiser.fileLocator']
     visualiser.fileLocator:
         class: Symfony\Component\Config\FileLocator
