@@ -18,11 +18,15 @@ class ToDoList
   public function loadToDoListData()
   {
     $this->dataPath = $fileLocator->locate('@visualiserBundle/Resources/data/todo.json');
-    $this->toDoListData = json_decode(file_get_contents($path));
+    $this->toDoListData = json_decode(file_get_contents($dataPath));
   }
 
   public function getToDoList()
   {
-    return $this->toDoListData;
+    if ($this->toDoListData == '') {
+      return 'ERROR: No data loaded to class. Did you forget to call loadToDoListData?';
+    } else {
+      return $this->toDoListData;
+    }
   }
 }
