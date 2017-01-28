@@ -1,6 +1,6 @@
 <?php
 
-namespace visualiserBundle\Model;
+namespace VisualiserBundle\Model;
 
 use Symfony\Component\Config\FileLocator;
 
@@ -15,16 +15,16 @@ class ToDoList
     $this->fileLocator = $fileLocator;
   }
 
-  public function loadToDoListData()
+  public function loadData()
   {
-    $this->dataPath = $fileLocator->locate('@visualiserBundle/Resources/data/todo.json');
-    $this->toDoListData = json_decode(file_get_contents($dataPath));
+  $this->dataPath = $this->fileLocator->locate('@VisualiserBundle/Resources/views/base.html.twig');
+  $this->toDoListData = json_decode(file_get_contents($this->dataPath));
   }
 
   public function getToDoList()
   {
     if ($this->toDoListData == '') {
-      return 'ERROR: No data loaded to class. Did you forget to call loadToDoListData?';
+      return 'ERROR: No data loaded to class. Did you forget to call loadData?';
     } else {
       return $this->toDoListData;
     }

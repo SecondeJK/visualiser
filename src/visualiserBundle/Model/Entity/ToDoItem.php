@@ -1,6 +1,6 @@
 <?php
 
-namespace visualiserBundle\Entity;
+namespace VisualiserBundle\Entity;
 
 class ToDoItem
 {

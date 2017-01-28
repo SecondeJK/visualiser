@@ -1,10 +1,10 @@
 <?php
 
-namespace visualiserBundle\Controller;
+namespace VisualiserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use visualiserBundle\Model;
+use VisualiserBundle\Model;
 
 class ToDoController extends Controller
 {
@@ -14,10 +14,12 @@ class ToDoController extends Controller
     public function indexAction()
     {
         $toDoListService = $this->get('visualiser.todolist');
+        $toDoListService->loadData();
         $toDoListRender = $toDoListService->getToDoList();
+        dump($toDoListRender);
 
         return $this->render(
-          'visualiserBundle:Default:todo.html.twig',
+          'VisualiserBundle:Default:todo.html.twig',
           array('toDoList' => $toDoListRender)
         );
     }

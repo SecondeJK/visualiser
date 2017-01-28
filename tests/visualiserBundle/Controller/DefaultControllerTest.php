@@ -1,6 +1,6 @@
 <?php
 
-namespace visualiserBundle\Tests\Controller;
+namespace VisualiserBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

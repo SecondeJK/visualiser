@@ -1,9 +1,9 @@
 <?php
 
-namespace visualiserBundle;
+namespace VisualiserBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class visualiserBundle extends Bundle
+class VisualiserBundle extends Bundle
 {
 }

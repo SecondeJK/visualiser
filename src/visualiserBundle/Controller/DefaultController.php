@@ -1,6 +1,6 @@
 <?php
 
-namespace visualiserBundle\Controller;
+namespace VisualiserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -12,7 +12,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('visualiserBundle:Default:index.html.twig');
+        return $this->render('VisualiserBundle:Default:index.html.twig');
     }
 
     /**
@@ -20,7 +20,7 @@ class DefaultController extends Controller
      */
     public function gchartsAction()
     {
-        return $this->render('visualiserBundle:Default:gcharts.html.twig');
+        return $this->render('VisualiserBundle:Default:gcharts.html.twig');
     }
 
     /**
@@ -28,7 +28,7 @@ class DefaultController extends Controller
      */
     public function highChartsAction()
     {
-        return $this->render('visualiserBundle:Default:highcharts.html.twig');
+        return $this->render('VisualiserBundle:Default:highcharts.html.twig');
     }
 
     /**
@@ -36,6 +36,6 @@ class DefaultController extends Controller
      */
     public function d3jsAction()
     {
-        return $this->render('visualiserBundle:Default:d3js.html.twig');
+        return $this->render('VisualiserBundle:Default:d3js.html.twig');
     }
 }

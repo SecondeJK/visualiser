@@ -1,5 +1,5 @@
 visualiser:
-    resource: "@visualiserBundle/Controller/"
+    resource: "@VisualiserBundle/Controller/"
     type:     annotation
     prefix:   /
 
