@@ -17,7 +17,7 @@ class ToDoList
 
   public function loadData()
   {
-  $this->dataPath = $this->fileLocator->locate('@VisualiserBundle/Resources/views/base.html.twig');
+  $this->dataPath = $this->fileLocator->locate('@VisualiserBundle:Default:base.html.twig');
   $this->toDoListData = json_decode(file_get_contents($this->dataPath));
   }
 
