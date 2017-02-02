@@ -16,7 +16,6 @@ class ToDoController extends Controller
         $toDoListService = $this->get('visualiser.todolist');
         $toDoListService->loadData();
         $toDoListRender = $toDoListService->getToDoList();
-        dump($toDoListRender);
 
         return $this->render('VisualiserBundle:Default:todo.html.twig');
     }

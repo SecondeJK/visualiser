@@ -7,18 +7,17 @@ use Symfony\Component\Config\FileLocator;
 class ToDoList
 {
   private $toDoListData;
-  private $fileLocator;
   private $dataPath;
 
-  public function __construct(FileLocator $fileLocator)
+  public function __construct()
   {
-    $this->fileLocator = $fileLocator;
+    $this->dataPath = __DIR__.'/../Resources/data/todo.json';
   }
 
   public function loadData()
   {
-  $this->dataPath = $this->fileLocator->locate('@VisualiserBundle:Default:base.html.twig');
-  $this->toDoListData = json_decode(file_get_contents($this->dataPath));
+	$this->toDoListData = json_decode(file_get_contents($this->dataPath));
+	dump($this->toDoListData);
   }
 
   public function getToDoList()
