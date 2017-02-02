@@ -17,7 +17,6 @@ class ToDoList
   public function loadData()
   {
 	$this->toDoListData = json_decode(file_get_contents($this->dataPath));
-	dump($this->toDoListData);
   }
 
   public function getToDoList()

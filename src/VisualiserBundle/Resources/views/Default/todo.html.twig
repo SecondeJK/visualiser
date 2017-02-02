@@ -16,4 +16,11 @@
     using JSON.
   </p>
 </div>
+
+{% for toDoListKey, toDoListData in toDoList %}
+{{ toDoListData.itemDate }}
+{% endfor %}
+
+{{ dump(toDoList) }}
+
 {% endblock %}
