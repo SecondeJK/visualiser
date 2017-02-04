@@ -14,13 +14,13 @@
     There are two parts to this before the JS todo list is enabled: one is the menu system needs to be dynamic (at the
     moment it's static) and the second part is the todo list. I will attempt to store and render data for these
     using JSON.
+    
+		{% for k in toDoList %}
+			ITEM
+		{% endfor %}
+		
+{% dump(toDoList) %}
+
   </p>
 </div>
-
-{% for toDoListKey, toDoListData in toDoList %}
-{{ toDoListData.itemDate }}
-{% endfor %}
-
-{{ dump(toDoList) }}
-
 {% endblock %}
