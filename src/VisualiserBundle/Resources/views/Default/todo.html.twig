@@ -14,10 +14,29 @@
     There are two parts to this before the JS todo list is enabled: one is the menu system needs to be dynamic (at the
     moment it's static) and the second part is the todo list. I will attempt to store and render data for these
     using JSON.
-    
-		{% for k in toDoList %}
-			ITEM
-		{% endfor %}
+  </p>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Date</th>
+				<th>Item</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for item in toDoList %}
+				<tr>
+					<td>{{ item.itemDate }}</td>
+					<td>{{ item.itemTitle }}</td>
+					<td>
+						<span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon glyphicon-trash" aria-hidden="true"></span>
+					</td>
+				</tr> 
+			{% endfor %}
+		</tbody>	
+		</table>
+
 		
 {% dump(toDoList) %}
 

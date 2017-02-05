@@ -2,17 +2,13 @@
 	{
 		"itemKey": 1, 
 		"itemDate": "2017-01-01",
-		"itemTitle": "Test Title",
-		"itemDescription": "Ipsum Lorum Factum Est",
-		"itemDueDate": "2017-01-02",
+		"itemTitle": "Item Number1",
 		"itemCompleted": 0
 	},
 	{
 		"itemKey": 2,
 		"itemDate": "2017-01-02",
-		"itemTitle": "Test Title",
-		"itemDescription": "Ipsum Lorum Factum Est",
-		"itemDueDate": "2017-01-02",
+		"itemTitle": "Item Number 2",
 		"itemCompleted": 1
 	}
 ]
