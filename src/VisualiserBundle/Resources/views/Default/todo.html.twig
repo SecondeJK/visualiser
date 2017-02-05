@@ -15,8 +15,8 @@
     moment it's static) and the second part is the todo list. I will attempt to store and render data for these
     using JSON.
   </p>
-	<table class="table table-bordered">
-		<thead>
+	<table class="table table-hover">
+		<thead class="thead-default">
 			<tr>
 				<th>Date</th>
 				<th>Item</th>
@@ -36,6 +36,11 @@
 			{% endfor %}
 		</tbody>	
 		</table>
+			
+		{% form_theme form 'bootstrap_3_layout.html.twig' %}
+		{{ form_start(form) }}
+		{{ form_widget(form) }}
+		{{ form_end(form) }}
   </p>
 </div>
 {% endblock %}

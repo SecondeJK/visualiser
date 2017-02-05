@@ -16,19 +16,36 @@ class ToDoController extends Controller
     /**
      * @Route("/todo")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $toDoListService = $this->get('visualiser.todolist');
         $toDoListService->loadData();
         $toDoListRender = $toDoListService->getToDoList();
         
 		// create a task and give it some dummy data for this example
-        $dummyExample = new Entity\ToDoItem();
+        $toDoActive = new Entity\ToDoItem();
         //echo $dummyExample->getItemCompleted();
-        $dummyExample->setItemTitle('Write a new item');
-        dump($dummyExample);
-        //$dummyExample->setItemDate(new \DateTime('tomorrow'));
+        $toDoActive->setItemTitle('Write a new item');
+        
+        $form = $this->createFormBuilder($toDoActive)
+            ->add('itemTitle', TextType::class)
+            ->add('itemDate', DateType::class)
+            ->add('save', SubmitType::class, array('label' => 'Create Item'))
+            ->getForm();
+        
+        // Time to handle the form
+        $form->handleRequest($request);
 
-        return $this->render('VisualiserBundle:Default:todo.html.twig', array('toDoList' => $toDoListRender));
+		if ($form->isSubmitted() && $form->isValid()) {
+			$toDoActive = $form->getData();
+			
+			return $this->redirectToRoute('visualiser_todo_index');
+		}
+            
+        return $this->render('VisualiserBundle:Default:todo.html.twig', 
+			array('toDoList' => $toDoListRender,
+			      'form' => $form->createView()
+			 )
+		);
     }
 }

@@ -1,8 +1,7 @@
 <?php
 
 namespace VisualiserBundle\Model;
-
-use Symfony\Component\Config\FileLocator;
+namespace VisualiserBundle\Entity;
 
 class ToDoList
 {
@@ -27,4 +26,24 @@ class ToDoList
       return $this->toDoListData;
     }
   }
+  
+  public function addItem(Entity\ToDoItem $toDoItem)
+  {
+	  $this->toDoListData[] = $toDoItem;
+  }
+  
+  /*
+   * @todo This funtion should be private. Change in when done testing
+   */
+  private function reindexList()
+  {
+	  $this->toDoListData = array_values($this->toDoListData);
+  }
+  
+  private function writeList()
+  {
+	  file_put_contents($this->dataPath, json_encode($this->toDoListData));
+  }
+  
+  
 }

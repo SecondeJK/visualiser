@@ -4,8 +4,9 @@ namespace VisualiserBundle\Entity;
 
 class ToDoItem
 {
-  //Individual items. I'm not using a repository for this, it's too much
-  // @todo remove comments
+	//Individual items. I'm not using a repository for this, it's too much
+	// @todo remove comments
+	
 	protected $itemKey;
 	protected $itemDate;
 	protected $itemTitle;
