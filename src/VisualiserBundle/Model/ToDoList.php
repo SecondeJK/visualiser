@@ -37,6 +37,7 @@ class ToDoList
 	  );
 	 	
 	  $this->toDoListData[] = $newItem;
+	  $this->writeList();
 	  return $this;
   }
   
@@ -49,9 +50,17 @@ class ToDoList
 	  return $this;
   }
   
-  public function writeList()
+  private function writeList()
   {
 	  file_put_contents($this->dataPath, json_encode($this->toDoListData));
+	  return $this;
+  }
+  
+  public function deleteItem($id)
+  {
+	  unset($this->toDoListData[$id]);
+	  $this->reindexList();
+	  $this->writeList();
 	  return $this;
   }
   

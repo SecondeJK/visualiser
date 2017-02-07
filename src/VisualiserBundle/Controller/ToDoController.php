@@ -14,14 +14,15 @@ use VisualiserBundle\Entity;
 class ToDoController extends Controller
 {
     /**
-     * @Route("/todo")
+     * @Route("/todo", name="visualiser_todo_index")
      */
     public function indexAction(Request $request)
     {
         $toDoListService = $this->get('visualiser.todolist');
         $toDoListService->loadData();
         $toDoListRender = $toDoListService->getToDoList();
-        //dump($toDoListRender);
+        
+        dump($toDoListRender);
         
 		// create a task and give it some dummy data for this example
         $toDoActive = new Entity\ToDoItem();
@@ -41,7 +42,6 @@ class ToDoController extends Controller
 			$toDoActive = $form->getData();
 			
 			$toDoListService->addItem($toDoActive);
-			$toDoListService->writeList();
 			
 			return $this->redirectToRoute('visualiser_todo_index');
 		}
@@ -52,4 +52,16 @@ class ToDoController extends Controller
 			 )
 		);
     }
+    
+    /**
+     * @Route("todo/delete/{id}", name="visualiser_todo_delete")
+     */
+    public function deleteAction($id)
+    {
+		$toDoListService = $this->get('visualiser.todolist');
+        $toDoListService->loadData();
+        $toDoListService->deleteItem($id);
+        
+        return $this->redirectToRoute('visualiser_todo_index');
+	}	
 }

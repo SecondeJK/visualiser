@@ -24,13 +24,13 @@
 			</tr>
 		</thead>
 		<tbody>
-			{% for item in toDoList %}
+			{% for itemKey, itemData in toDoList %}
 				<tr>
-					<td>{{ item.itemDate }}</td>
-					<td>{{ item.itemTitle }}</td>
+					<td>{{ itemData.itemDate }}</td>
+					<td>{{ itemData.itemTitle }}</td>
 					<td>
-						<span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span>
-						<span class="glyphicon glyphicon glyphicon-trash" aria-hidden="true"></span>
+						<a href=/todo/edit/{{ itemKey }}><span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+						<a href=/todo/delete/{{ itemKey }}><span class="glyphicon glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 					</td>
 				</tr> 
 			{% endfor %}
