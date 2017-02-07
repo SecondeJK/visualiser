@@ -22,7 +22,9 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=-1
+current_page=1
+FILE_NAME_0=118;PHP;0;EUTF-8;1;1;0;%2Fhome%2Fjimseconde%2FDownloads%2Fvisualiser%2Fsrc%2FVisualiserBundle%2FModel%2FToDoList.php;0;4
+FILE_NAME_1=159;PHP;0;EUTF-8;1;1;0;%2Fhome%2Fjimseconde%2FDownloads%2Fvisualiser%2Fsrc%2FVisualiserBundle%2FEntity%2FToDoItem.php;0;4
 
 [VTE]
 last_dir=/home/jimseconde/Downloads/visualiser

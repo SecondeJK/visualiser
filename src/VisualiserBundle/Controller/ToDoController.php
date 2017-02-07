@@ -21,6 +21,7 @@ class ToDoController extends Controller
         $toDoListService = $this->get('visualiser.todolist');
         $toDoListService->loadData();
         $toDoListRender = $toDoListService->getToDoList();
+        //dump($toDoListRender);
         
 		// create a task and give it some dummy data for this example
         $toDoActive = new Entity\ToDoItem();
@@ -38,6 +39,9 @@ class ToDoController extends Controller
 
 		if ($form->isSubmitted() && $form->isValid()) {
 			$toDoActive = $form->getData();
+			
+			$toDoListService->addItem($toDoActive);
+			$toDoListService->writeList();
 			
 			return $this->redirectToRoute('visualiser_todo_index');
 		}

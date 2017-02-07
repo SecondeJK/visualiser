@@ -1,12 +1,1 @@
- [
-	{
-		"itemDate": "2017-01-01",
-		"itemTitle": "Item Number1",
-		"itemCompleted": 1
-	},
-	{
-		"itemDate": "2017-01-02",
-		"itemTitle": "Item Number 2",
-		"itemCompleted": 0
-	}
-]
+[{"itemDate":"2017-01-01","itemTitle":"Item Number1","itemCompleted":1},{"itemDate":"2017-01-02","itemTitle":"Item Number 2","itemCompleted":0},{"itemDate":"2012-01-01","itemTitle":"Write a new item","itemCompleted":0}]

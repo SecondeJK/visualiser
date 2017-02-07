@@ -1,7 +1,8 @@
 <?php
 
 namespace VisualiserBundle\Model;
-namespace VisualiserBundle\Entity;
+
+use VisualiserBundle\Entity;
 
 class ToDoList
 {
@@ -29,20 +30,29 @@ class ToDoList
   
   public function addItem(Entity\ToDoItem $toDoItem)
   {
-	  $this->toDoListData[] = $toDoItem;
+	  $newItem = array(
+		'itemDate' => $toDoItem->getItemDate()->format('Y-m-d'),
+		'itemTitle' => $toDoItem->getItemTitle(),
+		'itemCompleted' => $toDoItem->getItemCompleted()
+	  );
+	 	
+	  $this->toDoListData[] = $newItem;
+	  return $this;
   }
   
   /*
-   * @todo This funtion should be private. Change in when done testing
+   * @todo This function should be private. Change in when done testing
    */
   private function reindexList()
   {
 	  $this->toDoListData = array_values($this->toDoListData);
+	  return $this;
   }
   
-  private function writeList()
+  public function writeList()
   {
 	  file_put_contents($this->dataPath, json_encode($this->toDoListData));
+	  return $this;
   }
   
   
