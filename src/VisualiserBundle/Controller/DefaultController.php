@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="visualiser_index")
      */
     public function indexAction()
     {
@@ -16,7 +16,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/google-charts")
+     * @Route("/google-charts", name="visualiser_googlecharts")
      */
     public function gchartsAction()
     {
@@ -24,7 +24,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/highcharts")
+     * @Route("/highcharts", name="visualiser_highcharts")
      */
     public function highChartsAction()
     {
@@ -35,6 +35,14 @@ class DefaultController extends Controller
      * @Route("/d3js")
      */
     public function d3jsAction()
+    {
+        return $this->render('VisualiserBundle:Default:d3js.html.twig');
+    }
+    
+    /**
+     * @Route("/dashboard", name="visualiser_dashboard")
+     */
+    public function dashboardAction()
     {
         return $this->render('VisualiserBundle:Default:d3js.html.twig');
     }

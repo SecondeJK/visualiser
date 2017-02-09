@@ -1,5 +1,5 @@
 <?php
-namespace VisualiserBunder\Menu;
+namespace VisualiserBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -17,8 +17,8 @@ class Builder implements ContainerAwareInterface
         
         // create another menu item
         $menu->addChild('Visual Libraries', array('route' => 'homepage'));
-		$menu->addChild('Dashboard Examples', array('route' => 'homepage'));
-		$menu->addChild('App ToDo List', array('route' => 'homepage'));
+		$menu->addChild('Dashboard Examples', array('route' => 'visualiser_dashboard'));
+		$menu->addChild('App ToDo List', array('route' => 'visualiser_todo_index'));
 		
         return $menu;
     }
