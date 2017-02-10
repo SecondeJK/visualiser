@@ -18,8 +18,12 @@ class Builder implements ContainerAwareInterface
         // create another menu item
         $menu->addChild('Visual Libraries', array('route' => 'homepage'));
 		$menu->addChild('Dashboard Examples', array('route' => 'visualiser_dashboard'));
+		$menu['Visual Libraries']->addChild('Google Charts', array('route' => 'visualiser_googlecharts'));
+		$menu['Visual Libraries']->addChild('d3js', array('route' => 'visualiser_d3js'));
+		$menu['Visual Libraries']->addChild('HighCharts', array('route' => 'visualiser_dashboard'));
+		//$menu['Visual Libraries']->setLinkAttribute('class', '');
 		$menu->addChild('App ToDo List', array('route' => 'visualiser_todo_index'));
-		
-        return $menu;
+		dump($menu);
+        return $menu;	
     }
 }

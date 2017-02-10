@@ -32,7 +32,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/d3js")
+     * @Route("/d3js", name="visualiser_d3js")
      */
     public function d3jsAction()
     {
