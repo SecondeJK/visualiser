@@ -16,12 +16,14 @@ class Builder implements ContainerAwareInterface
         $menu->addChild('Home', array('route' => 'homepage'));
         $menu->addChild('Visual Libraries', array('route' => 'homepage'));
 		$menu->addChild('Dashboard Examples', array('route' => 'visualiser_dashboard'));
+		$menu->addChild('App ToDo List', array('route' => 'visualiser_todo_index'));
 		
-		//$menu['Visual Libraries']->setParentAttributes(array('class' => 'dropdown-menu'));
+		$menu['Visual Libraries']->setAttributes(array('class' => 'dropdown'));
+		$menu['Visual Libraries']->setChildrenAttributes(array('class' => 'dropdown-menu'));
+		
 		$menu['Visual Libraries']->addChild('Google Charts', array('route' => 'visualiser_googlecharts'));
 		$menu['Visual Libraries']->addChild('d3js', array('route' => 'visualiser_d3js'));
 		$menu['Visual Libraries']->addChild('HighCharts', array('route' => 'visualiser_dashboard'));
-		$menu->addChild('App ToDo List', array('route' => 'visualiser_todo_index'));
 		
 		$menu->setChildrenAttributes(array('class' => 'nav navbar-nav'));
 
