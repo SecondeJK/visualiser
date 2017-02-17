@@ -4,10 +4,17 @@
 <div class="container">
     <img width='50%' src='{{ asset('images/google-charts-logo.jpg') }}'>
     <p>
-		The first part of this page is to render two Google Charts with API data
-		that will be hardcoded into the Application classes. This architecture will display
-		knowledge of a custom API client class to pipe to the charts, plus use of Guzzle
-		to do some basic JSON interactions.
+		This page has several objectives. Firstly two containers will be built below, with Google Chart
+		objects rendered with a script called by Symfony. These will contain static demo data.
+	</p>
+	<p>
+		The next target is to write two containers with an API feed built into them. So, every time you load the
+		page, the framework will load a custom API class using Guzzle to read/write to the chart.
+	</p>
+	<p>
+		And finally, a Symfony built form will be rendered that will control the chart via. my class, JSON and Guzzle.
+		All I can say at this point is holy shit, I can't wait to do some OAuth stuff.
+	</p>
 		</br>
 		</br>
     </p>
@@ -27,7 +34,7 @@
 
 {% block javascripts %}
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	<script src="{{ asset('js/hardcoded.geo.js') }}"></script>
+	<script src="{{ asset('js/hardcoded.chart1.js') }}"></script>
 {% endblock %}
 
 
