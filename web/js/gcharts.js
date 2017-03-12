@@ -1,7 +1,8 @@
-google.charts.load('current', {'packages':['geochart','bar']});
+google.charts.load('current', {'packages':['geochart','bar','corechart']});
 
 google.charts.setOnLoadCallback(drawRegionsMap);
 google.charts.setOnLoadCallback(drawBarChart);
+google.charts.setOnLoadCallback(drawDonut);
 
 function drawRegionsMap() {
 
@@ -32,13 +33,29 @@ function drawBarChart() {
 	]);
 
 	var options = {
-	  chart: {
-		title: 'Company Performance',
-		subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-	  }
+	  chart: {}
 	};
 
 	var chart = new google.charts.Bar(document.getElementById('stacked_div'));
 
+	chart.draw(data, options);
+}
+
+function drawDonut() {
+	var data = google.visualization.arrayToDataTable([
+	  ['Operating System', 'Percentage Usage'],
+	  ['Windows 8',     42],
+	  ['Windows 7',      11],
+	  ['MacOS X',  26],
+	  ['Linux', 14],
+	  ['BSD',    7]
+	]);
+
+	var options = {
+	  title: '2017 Operating System Usage',
+	  pieHole: 0.4,
+	};
+
+	var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
 	chart.draw(data, options);
 }
