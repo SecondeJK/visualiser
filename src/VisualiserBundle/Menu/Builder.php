@@ -23,8 +23,8 @@ class Builder implements ContainerAwareInterface
 		$menu['Visual Libraries']->setChildrenAttributes(array('class' => 'dropdown-menu'));		
 		$menu['Visual Libraries']->addChild('Google Charts', array('route' => 'visualiser_googlecharts'));
 		$menu['Visual Libraries']->addChild('d3js', array('route' => 'visualiser_d3js'));
-		$menu['Visual Libraries']->addChild('HighCharts', array('route' => 'visualiser_dashboard'));
-		$menu['Visual Libraries']->setLabel('Visual Libraries<span class="caret"></span>');
+		$menu['Visual Libraries']->addChild('HighCharts', array('route' => 'visualiser_highcharts'));
+		$menu['Visual Libraries']->setLabel('Visual Libraries');
 		
 		$menu->setChildrenAttributes(array('class' => 'nav navbar-nav'));
         return $menu;	
