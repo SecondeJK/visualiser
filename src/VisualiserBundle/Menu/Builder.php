@@ -27,10 +27,6 @@ class Builder implements ContainerAwareInterface
 		$menu['Visual Libraries']->setLabel('Visual Libraries<span class="caret"></span>');
 		
 		$menu->setChildrenAttributes(array('class' => 'nav navbar-nav'));
-
-		// some reverse engineering required
-		dump(get_class_methods($menu));
-		dump($menu);
         return $menu;	
     }
 }
