@@ -2,24 +2,27 @@
 
 {% block body %}
 <div class="container">
-  <div class="jumbotron">
     <img width='100%' src='{{ asset('images/tech-highcharts.png') }}'>
-  </div>
-
-  INPUT FORM SCAFFOLD BUILDS HERE
-
+  
     <div class="row">
       <div class="col-md-6">
-        <h2>Google Charts</h2>
+        <h2>Container 1: API Data</h2>
         <p><img width='100%' src='{{ asset('images/tech-highcharts.png') }}'></p>
-        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        <p>I need to find an API to feed into a Geo HighChart</p>
       </div>
+      
       <div class="col-md-6">
-        <h2>d3js</h2>
+        <h2>Container 2: API Data</h2>
         <p><p><img width='100%' src='{{ asset('images/tech-highcharts.png') }}'></p></p>
-        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+		<p>I need to find an API to feed into a HighChart Area Chart</p>
      </div>
+     
     </div>
 
+<img src="https://www.zoopla.co.uk/static/images/mashery/powered-by-zoopla-150x73.png" width="150" height="73" title="Property information powered by Zoopla" alt="Property information powered by Zoopla" border="0">
 </div>
+{% endblock %}
+
+{% block javascripts %}
+	<script src="http://code.highcharts.com/highcharts.js"></script>
 {% endblock %}
