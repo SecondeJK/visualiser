@@ -26,13 +26,13 @@
 		</div>
 		<div class="col-md-6">
 			<h3>Container 2: Currently GC Stacked Bar Render with demo data</h3>
-			<div id="stacked_bar_div" style="width: 100%; height: 200px;"></div>
+			<div id="stacked_div" style="width: 100%; height: 300px;"></div>
 		</div>
     </div>
     
         <div class="row">
 		<div class="col-md-6">
-			<h3>Container 3: VARIABLE CHART</h3>
+			<h3>Container 3: Donut with Dummy Data</h3>
 				<p>Symfony form to read into bar chart, including validation</p>
 				<p>This will also have architecture to be service based</p>
 		</div>
@@ -48,7 +48,7 @@
 
 {% block javascripts %}
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	<script src="{{ asset('js/hardcoded.chart1.js') }}"></script>
+	<script src="{{ asset('js/gcharts.js') }}"></script>
 {% endblock %}
 
 
