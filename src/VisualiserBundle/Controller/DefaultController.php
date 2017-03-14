@@ -30,12 +30,21 @@ class DefaultController extends Controller
     public function zooplaAction()
     {
 		// Get Guzzle
-		
 		$client = new Client([
 			// Base URI is used with relative requests
-			'base_uri' => 'http://httpbin.org',
-			// You can set any number of default request options.
-			'timeout'  => 2.0,
+			'base_uri' => 'http://api.zoopla.co.uk/api/v1/'
+		]);
+		
+		// Get the api key
+		$apiKey = $this->getParameter('zoopla_api_key');
+		dump($apiKey);
+		
+		$client->request('GET', 'zed_index', [
+			'query' => [
+				'area' => 'HA3',
+				'output_type' => 'outcode',
+				'api_key' => $apiKey,
+			]
 		]);
 
         return $this->render('VisualiserBundle:Default:zoopla.html.twig');
