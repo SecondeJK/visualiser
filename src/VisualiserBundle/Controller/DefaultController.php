@@ -4,6 +4,7 @@ namespace VisualiserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use GuzzleHttp\Client;
 
 class DefaultController extends Controller
 {
@@ -28,6 +29,15 @@ class DefaultController extends Controller
      */
     public function zooplaAction()
     {
+		// Get Guzzle
+		
+		$client = new Client([
+			// Base URI is used with relative requests
+			'base_uri' => 'http://httpbin.org',
+			// You can set any number of default request options.
+			'timeout'  => 2.0,
+		]);
+
         return $this->render('VisualiserBundle:Default:zoopla.html.twig');
     }
 
