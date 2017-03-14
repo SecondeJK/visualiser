@@ -15,7 +15,7 @@ class Builder implements ContainerAwareInterface
         
         $menu->addChild('Home', array('route' => 'homepage'));
         $menu->addChild('Visual Libraries', array('route' => 'homepage', 'extra' => array('safe_label' => true)));
-		$menu->addChild('Dashboard Examples', array('route' => 'visualiser_dashboard'));
+		$menu->addChild('Zoopla Showcase', array('route' => 'visualiser_zoopla'));
 		$menu->addChild('App ToDo List', array('route' => 'visualiser_todo_index'));
 		
 		$menu['Visual Libraries']->setAttributes(array('class' => 'dropdown'));

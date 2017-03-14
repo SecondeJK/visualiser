@@ -22,6 +22,14 @@ class DefaultController extends Controller
     {
         return $this->render('VisualiserBundle:Default:gcharts.html.twig');
     }
+    
+        /**
+     * @Route("/zoopla", name="visualiser_zoopla")
+     */
+    public function zooplaAction()
+    {
+        return $this->render('VisualiserBundle:Default:zoopla.html.twig');
+    }
 
     /**
      * @Route("/highcharts", name="visualiser_highcharts")
