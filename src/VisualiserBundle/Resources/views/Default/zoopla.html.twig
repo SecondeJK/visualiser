@@ -16,7 +16,8 @@
     
     <div class="row">
 		<div class="col-md-6">
-			<h3>Scaffold:Container 1:Data</h3>
+			<h3>Live: Average Rental Data</h3>
+			<div id="average_rents_5" style="width: 100%; height: 300px;"></div>
 		</div>
 		<div class="col-md-6">
 			<h3>Scaffold:Container 2:Data</h3>
@@ -33,6 +34,11 @@
     </div>
 	<img src="https://www.zoopla.co.uk/static/images/mashery/powered-by-zoopla-150x73.png" width="150" height="73" title="Property information powered by Zoopla" alt="Property information powered by Zoopla" border="0">
 </div>
+{% endblock %}
+
+{% block javascripts %}
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script src="{{ asset('js/gcharts.js') }}"></script>
 {% endblock %}
 
 

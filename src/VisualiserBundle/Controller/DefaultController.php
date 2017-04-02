@@ -50,6 +50,7 @@ class DefaultController extends Controller
 					'listing_status' => 'rent',
 					'include_rented' => 0,
 					'radius' => 10,
+					'summarized' => 1,
 					'api_key' => $apiKey
 				]
 			]);
@@ -57,11 +58,35 @@ class DefaultController extends Controller
 			$fullRawData = json_decode($response->getBody(), true);
 			$cityRawData[$city] = $fullRawData;	
 		}
+
+		$chartData = $this->refactorApiDataForChart($cityRawData);
 		
-		dump($cityRawData);
+		dump($chartData);
 		
         return $this->render('VisualiserBundle:Default:zoopla.html.twig');
     }
+    
+    /**
+     * @param array $groupedApiData
+     */
+    public function refactorApiDataForChart(array $groupedApiData)
+    {
+		$refactoredData = [];
+
+		foreach ($groupedApiData as $city => $cityData) {
+			$totalRentPrice = 0;
+			$i = 0;
+				
+			foreach ($cityData['listing'] as $listing) {
+				$totalRentPrice += $listing['price'];
+				$i++;
+			}
+			
+			$refactoredData[$city] = $totalRentPrice / $i;
+		}
+		
+		return $refactoredData;
+	}
 
     /**
      * @Route("/highcharts", name="visualiser_highcharts")
