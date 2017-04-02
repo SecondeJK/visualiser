@@ -5,6 +5,7 @@ namespace VisualiserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 class DefaultController extends Controller
 {
@@ -35,18 +36,30 @@ class DefaultController extends Controller
 			'base_uri' => 'http://api.zoopla.co.uk/api/v1/'
 		]);
 		
+		$cityIndex = ['Birmingham','Manchester','Leeds','Nottingham','Bristol'];
+		$cityRawData = [];
+		
 		// Get the api key
 		$apiKey = $this->getParameter('zoopla_api_key');
-		dump($apiKey);
 		
-		$client->request('GET', 'zed_index', [
-			'query' => [
-				'area' => 'HA3',
-				'output_type' => 'outcode',
-				'api_key' => $apiKey,
-			]
-		]);
-
+		foreach ($cityIndex as $city) {
+		
+			$response = $client->request('GET', 'property_listings.json', [
+				'query' => [
+					'area' => $city,
+					'listing_status' => 'rent',
+					'include_rented' => 0,
+					'radius' => 10,
+					'api_key' => $apiKey
+				]
+			]);
+			
+			$fullRawData = json_decode($response->getBody(), true);
+			$cityRawData[$city] = $fullRawData;	
+		}
+		
+		dump($cityRawData);
+		
         return $this->render('VisualiserBundle:Default:zoopla.html.twig');
     }
 
