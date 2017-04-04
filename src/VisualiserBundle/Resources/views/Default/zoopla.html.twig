@@ -38,7 +38,23 @@
 
 {% block javascripts %}
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	<script src="{{ asset('js/gcharts.js') }}"></script>
+	<script>
+	google.charts.load('current', {'packages':['bar']});
+	google.charts.setOnLoadCallback(drawAverageRentChart);
+
+	function drawAverageRentChart() {
+		var data = google.visualization.arrayToDataTable({{ payload|json_encode()|raw }});
+
+		var options = {
+		  chart: {}
+		};
+
+		var chart = new google.charts.Bar(document.getElementById('average_rents_5'));
+
+		chart.draw(data, options);
+	}
+
+</script> 
 {% endblock %}
 
 

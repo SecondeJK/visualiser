@@ -60,10 +60,9 @@ class DefaultController extends Controller
 		}
 
 		$chartData = $this->refactorApiDataForChart($cityRawData);
-		
 		dump($chartData);
 		
-        return $this->render('VisualiserBundle:Default:zoopla.html.twig');
+        return $this->render('VisualiserBundle:Default:zoopla.html.twig', array('payload' => $chartData));
     }
     
     /**
@@ -72,6 +71,11 @@ class DefaultController extends Controller
     public function refactorApiDataForChart(array $groupedApiData)
     {
 		$refactoredData = [];
+		
+		// Set columns
+		$columns = ['City','Average'];
+		
+		$refactoredData[] = $columns;
 
 		foreach ($groupedApiData as $city => $cityData) {
 			$totalRentPrice = 0;
@@ -82,7 +86,9 @@ class DefaultController extends Controller
 				$i++;
 			}
 			
-			$refactoredData[$city] = $totalRentPrice / $i;
+			$refactoredDataColumn = [$city, $totalRentPrice / $i];
+			$refactoredData[] = $refactoredDataColumn;
+			unset($refactoredDataColumn);
 		}
 		
 		return $refactoredData;
