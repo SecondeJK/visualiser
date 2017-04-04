@@ -51,7 +51,8 @@ class DefaultController extends Controller
 					'include_rented' => 0,
 					'radius' => 10,
 					'summarized' => 1,
-					'api_key' => $apiKey
+					'api_key' => $apiKey,
+					'page_size' => 50
 				]
 			]);
 			
@@ -60,7 +61,6 @@ class DefaultController extends Controller
 		}
 
 		$chartData = $this->refactorApiDataForChart($cityRawData);
-		dump($chartData);
 		
         return $this->render('VisualiserBundle:Default:zoopla.html.twig', array('payload' => $chartData));
     }
