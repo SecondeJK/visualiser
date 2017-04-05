@@ -64,11 +64,8 @@
 				chart: {
 					type: 'bar'
 				},
-				title: {
-					text: 'Average Rent 2 Bed Flats'
-				},
 				xAxis: {
-					categories: ['Birmingham', 'Manchester', 'Bristol', 'Nottingham', 'Leeds']
+					categories: {{ cityIndex|json_encode|raw }}
 				},
 				yAxis: {
 					title: {
@@ -77,7 +74,7 @@
 				},
 				series: [{
 					name: 'Rent Price',
-					data: [452, 230, 398, 523, 338]
+					data: {{ highchartData|json_encode|raw }}
 				}]
 			});
 		});

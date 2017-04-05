@@ -45,13 +45,20 @@ class DefaultController extends Controller
     {	
 		$this->apiKey = $this->getParameter('zoopla_api_key');
 					
-        return $this->render('VisualiserBundle:Default:zoopla.html.twig', array('payload' => $this->zooplaGoogleChart()));
+        return $this->render(
+			'VisualiserBundle:Default:zoopla.html.twig', 
+			array(
+				'payload' => $this->zooplaGoogleChart(),
+				'cityIndex' => $this->returnCityIndexForCharts(),
+				'highchartData' => $this->zooplaHighChart()
+			)
+		);
     }
     
     /**
      * @param array $groupedApiData
      */
-    public function refactorApiDataForGoogleChart(array $groupedApiData)
+    public function refactorApiDataForChart(array $groupedApiData)
     {
 		$refactoredData = [];
 		
@@ -78,7 +85,7 @@ class DefaultController extends Controller
 	}
 
     /**
-     * @Route("/highcharts", name="visualiser_highcharts")
+     * @Route("/visualiser_highcharts", name="visualiser_highcharts")
      */
     public function highChartsAction()
     {
@@ -105,10 +112,9 @@ class DefaultController extends Controller
     {
 		// At the moment this chart lives in the controller
 		// This will be moved to a new class and then possibly service based
-		$cityIndex = ['Birmingham','Manchester','Leeds','Nottingham','Bristol'];
 		$cityRawData = [];
 	
-		foreach ($cityIndex as $city) {
+		foreach ($this->returnCityIndexForCharts() as $city) {
 		
 			$response = $this->client->request('GET', 'property_listings.json', [
 				'query' => [
@@ -126,7 +132,65 @@ class DefaultController extends Controller
 			$cityRawData[$city] = $fullRawData;	
 		}
 
-		$chartData = $this->refactorApiDataForGoogleChart($cityRawData);
+		$chartData = $this->refactorApiDataForChart($cityRawData);
 		return $chartData;
     }
+    
+    public function zooplaHighChart()
+    {
+		// At the moment this chart lives in the controller
+		// This will be moved to a new class and then possibly service based
+		$cityRawData = [];
+	
+		foreach ($this->returnCityIndexForCharts() as $city) {
+		
+			$response = $this->client->request('GET', 'property_listings.json', [
+				'query' => [
+					'area' => $city,
+					'listing_status' => 'rent',
+					'include_rented' => 0,
+					'radius' => 10,
+					'summarized' => 1,
+					'api_key' => $this->apiKey,
+					'page_size' => 50
+				]
+			]);
+			
+			$fullRawData = json_decode($response->getBody(), true);
+			$cityRawData[$city] = $fullRawData;	
+		}
+
+		$chartData = $this->refactorApiDataForHighChart($cityRawData);
+		return $chartData;
+    }
+    
+    public function returnCityIndexForCharts()
+    {
+		$cityIndex = ['Birmingham','Manchester','Leeds','Nottingham','Bristol'];
+		return $cityIndex;
+	}
+	
+	    /**
+     * @param array $groupedApiData
+     */
+    public function refactorApiDataForHighChart(array $groupedApiData)
+    {
+		$refactoredData = [];
+		
+		foreach ($groupedApiData as $city => $cityData) {
+			$totalRentPrice = 0;
+			$i = 0;
+				
+			foreach ($cityData['listing'] as $listing) {
+				$totalRentPrice += $listing['price'];
+				$i++;
+			}
+			
+			$refactoredDataColumn = $totalRentPrice / $i;
+			$refactoredData[] = $refactoredDataColumn;
+			unset($refactoredDataColumn);
+		}
+		
+		return $refactoredData;
+	}
 }
