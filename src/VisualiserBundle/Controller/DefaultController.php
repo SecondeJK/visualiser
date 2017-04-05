@@ -8,7 +8,20 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 
 class DefaultController extends Controller
-{
+{	
+	protected $client;
+	
+	protected $apiKey;
+	
+	public function __construct()
+	{
+		// Get Guzzle
+		$this->client = new Client([
+			// Base URI is used with relative requests
+			'base_uri' => 'http://api.zoopla.co.uk/api/v1/'
+		]);
+	}
+	
     /**
      * @Route("/", name="visualiser_index")
      */
@@ -29,46 +42,16 @@ class DefaultController extends Controller
      * @Route("/zoopla", name="visualiser_zoopla")
      */
     public function zooplaAction()
-    {
-		// Get Guzzle
-		$client = new Client([
-			// Base URI is used with relative requests
-			'base_uri' => 'http://api.zoopla.co.uk/api/v1/'
-		]);
-		
-		$cityIndex = ['Birmingham','Manchester','Leeds','Nottingham','Bristol'];
-		$cityRawData = [];
-		
-		// Get the api key
-		$apiKey = $this->getParameter('zoopla_api_key');
-		
-		foreach ($cityIndex as $city) {
-		
-			$response = $client->request('GET', 'property_listings.json', [
-				'query' => [
-					'area' => $city,
-					'listing_status' => 'rent',
-					'include_rented' => 0,
-					'radius' => 10,
-					'summarized' => 1,
-					'api_key' => $apiKey,
-					'page_size' => 50
-				]
-			]);
-			
-			$fullRawData = json_decode($response->getBody(), true);
-			$cityRawData[$city] = $fullRawData;	
-		}
-
-		$chartData = $this->refactorApiDataForChart($cityRawData);
-		
-        return $this->render('VisualiserBundle:Default:zoopla.html.twig', array('payload' => $chartData));
+    {	
+		$this->apiKey = $this->getParameter('zoopla_api_key');
+					
+        return $this->render('VisualiserBundle:Default:zoopla.html.twig', array('payload' => $this->zooplaGoogleChart()));
     }
     
     /**
      * @param array $groupedApiData
      */
-    public function refactorApiDataForChart(array $groupedApiData)
+    public function refactorApiDataForGoogleChart(array $groupedApiData)
     {
 		$refactoredData = [];
 		
@@ -116,5 +99,34 @@ class DefaultController extends Controller
     public function dashboardAction()
     {
         return $this->render('VisualiserBundle:Default:d3js.html.twig');
+    }
+    
+    public function zooplaGoogleChart()
+    {
+		// At the moment this chart lives in the controller
+		// This will be moved to a new class and then possibly service based
+		$cityIndex = ['Birmingham','Manchester','Leeds','Nottingham','Bristol'];
+		$cityRawData = [];
+	
+		foreach ($cityIndex as $city) {
+		
+			$response = $this->client->request('GET', 'property_listings.json', [
+				'query' => [
+					'area' => $city,
+					'listing_status' => 'rent',
+					'include_rented' => 0,
+					'radius' => 10,
+					'summarized' => 1,
+					'api_key' => $this->apiKey,
+					'page_size' => 50
+				]
+			]);
+			
+			$fullRawData = json_decode($response->getBody(), true);
+			$cityRawData[$city] = $fullRawData;	
+		}
+
+		$chartData = $this->refactorApiDataForGoogleChart($cityRawData);
+		return $chartData;
     }
 }

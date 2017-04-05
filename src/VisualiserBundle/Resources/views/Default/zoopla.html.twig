@@ -47,7 +47,8 @@
 			var data = google.visualization.arrayToDataTable({{ payload|json_encode()|raw }});
 
 			var options = {
-			  chart: {}
+			  chart: {},
+			  legend: {position: 'none'}
 			};
 
 			var chart = new google.charts.Bar(document.getElementById('average_rents_5_gc'));
@@ -64,22 +65,19 @@
 					type: 'bar'
 				},
 				title: {
-					text: 'Fruit Consumption'
+					text: 'Average Rent 2 Bed Flats'
 				},
 				xAxis: {
-					categories: ['Apples', 'Bananas', 'Oranges']
+					categories: ['Birmingham', 'Manchester', 'Bristol', 'Nottingham', 'Leeds']
 				},
 				yAxis: {
 					title: {
-						text: 'Fruit eaten'
+						text: 'Price Per Week'
 					}
 				},
 				series: [{
-					name: 'Jane',
-					data: [1, 0, 4]
-				}, {
-					name: 'John',
-					data: [5, 7, 3]
+					name: 'Rent Price',
+					data: [452, 230, 398, 523, 338]
 				}]
 			});
 		});
